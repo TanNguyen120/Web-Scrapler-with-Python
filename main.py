@@ -1,11 +1,15 @@
 from bs4 import BeautifulSoup
+import requests
 
-# doc file html local
-with open('index.html', 'r') as htmlFile:
-    content = htmlFile.read()
-    # read the content with beauty ful soup
-    soup = BeautifulSoup(content,'lxml')
 
-    tags = soup.find_all('div',class_='price')
-    for tag in tags:
-        print(tag.span)
+#get the text file from a web page
+htmlContent = requests.get('https://www.masterduelmeta.com/').text
+
+soup = BeautifulSoup(htmlContent,'lxml')
+
+newCards = soup.find_all('div',class_='information svelte-kncn9e')
+
+for newCard in newCards:
+    tile = newCard.find('p', class_='title svelte-kncn9e')
+    print (tile)
+
