@@ -1,10 +1,14 @@
 import smtplib
 import os
+from dotenv import load_dotenv
+
 #sending mail set up
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-
+load_dotenv()
+# project_folder = os.path.expanduser('~/my-project-dir')  # adjust as appropriate
+# load_dotenv(os.path.join(project_folder, '.env'))
 def sendMailTo(mailContent, reciverAddress, Subject):
     mail_content = mailContent
     #The mail addresses and password
