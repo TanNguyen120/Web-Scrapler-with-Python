@@ -15,8 +15,11 @@ masterDuelMailContent = ScrapContent.getDuelMasterContet()
 
 goldPriceContent = ScrapContent.getGoldPrice()
 
+lichCatDien = ScrapContent.getElectricSchedule()
+
 SendMail.sendMailTo(masterDuelMailContent, 'tannguyenviet1220@gmail.com',' Tin tức Master Duel ')
 
 SendMail.sendMailTo(goldPriceContent, 'nguyentaan1220@gmail.com',' Cập nhật giá vàng mới nhất: ' + today)
 
+SendMail.sendMailTo(lichCatDien,'nguyentaan1220@gmail.com', ' Lịch Cắt điện Mới Nhât: ')
 

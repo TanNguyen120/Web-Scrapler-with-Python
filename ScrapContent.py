@@ -8,7 +8,7 @@ import requests
 
 
 
-
+# get new and leak from master duel meta
 def getDuelMasterContet():
     mailContent = ""
 
@@ -26,8 +26,26 @@ def getDuelMasterContet():
             mailContent = mailContent + leakCard.text
         leakCount += 1
     #-------------------------------------------------------------------------------------------------------------------------------
+
+    tierListHTMLContent = requests.get('https://www.masterduelmeta.com/tier-list').text
+
+    tierSoup = BeautifulSoup(tierListHTMLContent,'lxml')
+
+    tierDecks = tierSoup.find_all('div', class_= 'label svelte-1xbooa7')
+
+    for tierDeck in tierDecks:
+        deckName = tierDeck.find('div', class_='label svelte-1xbooa7')
+        deckPower = tierDeck.find('div', class_='power-label svelte-1winidr')
+        mailContent = mailContent + ("\n ---------------------------------------------------------------------------------- \n")
+        mailContent = mailContent + ' deck: ' + deckName + 'power: ' + deckPower 
+
+
+
+    #-------------------------------------------------------------------------------------------------------------------------------
+
     #get the text file from a web page
     htmlContent = requests.get('https://www.masterduelmeta.com/').text
+
 
     soup = BeautifulSoup(htmlContent,'lxml')
 
@@ -53,7 +71,7 @@ def getDuelMasterContet():
     print("scrap content from master duel meta successful")
     return mailContent
 
-
+#******************************************************************************************************************************************************
 def getGoldPrice():
     htmlContent = requests.get('https://www.pnj.com.vn/blog/gia-vang/').text
 
@@ -73,4 +91,23 @@ def getGoldPrice():
             mailContent = mailContent +'vàng: ' + type + ' mua vào: ' + buyPrice +'vnđ' +' || ' + ' bán ra: ' + sellPrice + 'vnđ'
     print("scrap gold price successful")
     return mailContent
+
+#******************************************************************************************************************************************************
+
+def getElectricSchedule():
+    mailContent = ""
+    htmlContent = requests.get('https://ithongtin.com/lich-cat-dien-an-giang').text
+    soup = BeautifulSoup(htmlContent,'lxml')
+    table = soup.find_all('tr')[2:]
+
+    for tr in table:
+        tds = tr.find_all('td')
+        mailContent = mailContent + ("Ngày: %s, Tại: %s, Từ: %s, Tới: %s, Lý Do: %s \n" % \
+              (tds[0].text, tds[2].text,tds[3].text,tds[4].text,tds[5].text ))
+        mailContent +=  ("\n ---------------------------------------------------------------------------------- \n")
+    if(mailContent.len != 0):
+        print('get lich cat dien successful')
+    return mailContent
+
+
 
