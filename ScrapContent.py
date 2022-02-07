@@ -98,16 +98,16 @@ def getElectricSchedule():
     mailContent = ""
     htmlContent = requests.get('https://ithongtin.com/lich-cat-dien-an-giang').text
     soup = BeautifulSoup(htmlContent,'lxml')
-    table = soup.find_all('tr')[2:]
+    table = soup.find_all('tr')[1:]
 
     for tr in table:
         tds = tr.find_all('td')
-        mailContent = mailContent + ("Ngày: %s, Tại: %s, Từ: %s, Tới: %s, Lý Do: %s \n" % \
-              (tds[0].text, tds[2].text,tds[3].text,tds[4].text,tds[5].text ))
+        mailContent = mailContent + (" %s, %s \n" % \
+              (tds[0].text, tds[1].text))
         mailContent +=  ("\n ---------------------------------------------------------------------------------- \n")
-    if(mailContent.len != 0):
+    if(len(mailContent) != 0):
         print('get lich cat dien successful')
     return mailContent
 
-
+print(getElectricSchedule())
 
