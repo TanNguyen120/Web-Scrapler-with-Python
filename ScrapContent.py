@@ -109,5 +109,4 @@ def getElectricSchedule():
         print('get lich cat dien successful')
     return mailContent
 
-print(getElectricSchedule())
 
