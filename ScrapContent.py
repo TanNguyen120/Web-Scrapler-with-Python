@@ -33,11 +33,11 @@ def getDuelMasterContet():
 
     tierDecks = tierSoup.find_all('div', class_= 'label svelte-1xbooa7')
 
-    for tierDeck in tierDecks:
-        deckName = tierDeck.find('div', class_='label svelte-1xbooa7')
-        deckPower = tierDeck.find('div', class_='power-label svelte-1winidr')
-        mailContent = mailContent + ("\n ---------------------------------------------------------------------------------- \n")
-        mailContent = mailContent + ' deck: ' + deckName + 'power: ' + deckPower 
+    # for tierDeck in tierDecks:
+    #     deckName = tierDeck.find('div', class_='label svelte-1xbooa7')
+    #     deckPower = tierDeck.find('div', class_='power-label svelte-1winidr')
+    #     mailContent = mailContent + ("\n ---------------------------------------------------------------------------------- \n")
+    #     mailContent = mailContent + ' deck: ' + deckName + 'power: ' + deckPower 
 
 
 

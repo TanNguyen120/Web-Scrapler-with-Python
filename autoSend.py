@@ -11,13 +11,13 @@ today = now.strftime("%m/%d/%Y")
 
 print("today is:" + today)
 
-masterDuelMailContent = ScrapContent.getDuelMasterContet()
+# masterDuelMailContent = ScrapContent.getDuelMasterContet()
 
 goldPriceContent = ScrapContent.getGoldPrice()
 
 lichCatDien = ScrapContent.getElectricSchedule()
 
-SendMail.sendMailTo(masterDuelMailContent, 'tannguyenviet1220@gmail.com',' Tin tức Master Duel ')
+# SendMail.sendMailTo(masterDuelMailContent, 'tannguyenviet1220@gmail.com',' Tin tức Master Duel ')
 
 SendMail.sendMailTo(goldPriceContent, 'nguyentaan1220@gmail.com',' Cập nhật giá vàng mới nhất: ' + today)
 
